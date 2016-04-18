@@ -20,9 +20,14 @@ var gameHeader = document.getElementById("game-header");
 var playerOneMarking = [];
 var playerTwoMarking = [];
 var whosTurn = 1;
+var onePlayer = false;
+
+var onePlayer = function(){
+	onePlayer = true;
+};
 
 function addSymbol(element) {
-	if(userChoice is onePlayer){
+	if(onePlayer == true){
 
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {

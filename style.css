@@ -11,6 +11,10 @@
 	text-align: center;
 	margin: 0 auto 25px;
 }
+#choice {
+	text-align: center;
+	margin-bottom: 25px;
+}
 #board-wrapper {
 	background-color: black;
 	max-width: 640px;

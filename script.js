@@ -21,14 +21,17 @@ var playerOneMarking = [];
 var playerTwoMarking = [];
 var whosTurn = 1;
 var onePlayer = false;
+var twoPlayer = false;
 
 var onePlayer = function(){
 	onePlayer = true;
 };
+var twoPlayer = function(){
+	twoPlayer = true;
+}
 
 function addSymbol(element) {
 	if(onePlayer == true){
-
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {
 				element.innerHTML = "X";
@@ -45,7 +48,8 @@ function addSymbol(element) {
 			gameHeader.className= "red";
 			}
 		checkWin();
-	}else{//two player
+	}
+	if (twoPlayer == true){
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {
 				element.innerHTML = "X";
@@ -90,6 +94,8 @@ function checkWin() {
 var playerOneRowCount = 0;
 var playerTwoRowCount = 0;
 var thisWinCombination;
+var player_one_message = "Player One won the game!";
+var player_two_message = "Player Two won the game!"
 	for (i=0;i<winners.length; i++) {
 		playerOneRowCount = 0;
 		playerTwoRowCount = 0;
@@ -104,8 +110,12 @@ var thisWinCombination;
 				playerTwoRowCount++;
 				console.log(playerTwoRowCount);
 			}
-			if(playerOneRowCount === 3 || playerTwoRowCount === 3) {
-				gameOver(thisWinCombination);
+			if(playerOneRowCount === 3){
+				gameOver(thisWinCombination, player_one_message);
+				return thisWinCombination;
+			} 
+			if(playerTwoRowCount === 3) {
+				gameOver(thisWinCombination, player_two_message);
 				return thisWinCombination;
 			}
 		}
@@ -113,19 +123,13 @@ var thisWinCombination;
 }
 
 
-function gameOver(combo) {
+function gameOver(combo, message) {
 	for(i=0; i<combo.length; i++){
 		document.getElementById(combo[i]).classList.add('winner');
 	}
-	// gameHeader.innerHTML = "Player One, won the game!";
+	gameHeader.innerHTML = message;
 }
 
-
-
-
-// 	element.innerHTML = "0";
-// 	whosTurn = 1;
-// 	gameheader.innerHTML
 
 	
 

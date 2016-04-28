@@ -1,11 +1,8 @@
 var squareWidth = document.getElementById("a1").clientWidth;
-console.dir(squareWidth);
 var squares = document.getElementsByClassName("square");
-console.dir(squares);
 for (i=0; i<squares.length; i++) {
 	squares[i].style.height = squareWidth + "px";	
 }
-
 var winners = [
 	["a1","a2","a3"],
 	["b1","b2","b3"],
@@ -20,18 +17,19 @@ var gameHeader = document.getElementById("game-header");
 var playerOneMarking = [];
 var playerTwoMarking = [];
 var whosTurn = 1;
-var onePlayer = false;
-var twoPlayer = false;
+var onePlayerGame = false;
+var twoPlayerGame = false;
 
 var onePlayer = function(){
-	onePlayer = true;
+	onePlayerGame = true;
 };
+
 var twoPlayer = function(){
-	twoPlayer = true;
+	twoPlayerGame = true;
 }
 
 function addSymbol(element) {
-	if(onePlayer == true){
+	if(onePlayerGame == true){
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {
 				element.innerHTML = "X";
@@ -49,7 +47,7 @@ function addSymbol(element) {
 			}
 		checkWin();
 	}
-	if (twoPlayer == true){
+	if (twoPlayerGame == true){
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {
 				element.innerHTML = "X";
@@ -130,7 +128,27 @@ function gameOver(combo, message) {
 	gameHeader.innerHTML = message;
 }
 
-
+function reset(){
+	for (var i=0;i<squares.length;i++){
+		squares[i].innerHTML = "";
+		if(squares[i].classList.contains('winner')){
+			squares[i].classList.remove("winner");
+		}
+		if(squares[i].classList.contains('p1')){
+			squares[i].classList.remove("p1");
+		}
+		if(squares[i].classList.contains('p2')){
+			squares[i].classList.remove("p2");
+		}
+	}
+	console.log(squares);
+	gameHeader.innerHTML = "NEW GAME";
+	playerOneMarking = [];
+	playerTwoMarking = [];
+	whosTurn = 1;
+	onePlayerGame = false;
+	twoPlayerGame = false;
+}
 	
 
 

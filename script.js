@@ -13,22 +13,30 @@ var winners = [
 	["a1","b2","c3"],
 	["a3","b2","c1"]
 ];
+var player_one_message = "Player One won the game!";
+var player_two_message = "Player Two won the game!";
 var gameHeader = document.getElementById("game-header");
 var playerOneMarking = [];
 var playerTwoMarking = [];
 var whosTurn = 1;
 var onePlayerGame = false;
 var twoPlayerGame = false;
+var canPlay = false;
 
 var onePlayer = function(){
+	canPlay = true;
 	onePlayerGame = true;
+	gameHeader.innerHTML = "One Player: Player 1's Turn";
 };
 
 var twoPlayer = function(){
+	canPlay=true;
 	twoPlayerGame = true;
+	gameHeader.innerHTML = "Two Player"
 }
 
 function addSymbol(element) {
+	if(canPlay == true){
 	if(onePlayerGame == true){
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {
@@ -47,7 +55,7 @@ function addSymbol(element) {
 			}
 		checkWin();
 	}
-	if (twoPlayerGame == true){
+	else if (twoPlayerGame == true){
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {
 				element.innerHTML = "X";
@@ -71,6 +79,9 @@ function addSymbol(element) {
 			gameHeader.className= "red";
 			}
 		checkWin();
+	}else {
+		gameHeader.innerHTML = "Please choose one or two player.";
+	}
 	}
 }
 
@@ -92,21 +103,16 @@ function checkWin() {
 var playerOneRowCount = 0;
 var playerTwoRowCount = 0;
 var thisWinCombination;
-var player_one_message = "Player One won the game!";
-var player_two_message = "Player Two won the game!"
 	for (i=0;i<winners.length; i++) {
 		playerOneRowCount = 0;
 		playerTwoRowCount = 0;
 		thisWinCombination = winners[i];
-		// console.log(thisWinCombination);
 		for(j=0; j<thisWinCombination.length; j++) {
-			// console.log(thisWinCombination[j]);
 			if(playerOneMarking.indexOf(thisWinCombination[j]) > -1){
 				playerOneRowCount++;
 			}
 			else if (playerTwoMarking.indexOf(thisWinCombination[j]) > -1) {
 				playerTwoRowCount++;
-				console.log(playerTwoRowCount);
 			}
 			if(playerOneRowCount === 3){
 				gameOver(thisWinCombination, player_one_message);
@@ -126,11 +132,15 @@ function gameOver(combo, message) {
 		document.getElementById(combo[i]).classList.add('winner');
 	}
 	gameHeader.innerHTML = message;
+	canPlay = false;
 }
 
 function reset(){
 	for (var i=0;i<squares.length;i++){
 		squares[i].innerHTML = "";
+		if(!squares[i].classList.contains('empty')){
+			squares[i].classList.add('empty');
+		}
 		if(squares[i].classList.contains('winner')){
 			squares[i].classList.remove("winner");
 		}

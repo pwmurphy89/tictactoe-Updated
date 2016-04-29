@@ -15,6 +15,10 @@
 	text-align: center;
 	margin-bottom: 25px;
 }
+#reset{
+	text-align: center;
+	margin:auto;
+}
 #board-wrapper {
 	background-color: black;
 	max-width: 640px;

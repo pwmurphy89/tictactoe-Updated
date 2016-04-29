@@ -41,19 +41,20 @@ function addSymbol(element) {
 		if(element.innerHTML == '') {
 			if(whosTurn == 1) {
 				element.innerHTML = "X";
+				transitionFont(element);
 				whosTurn = 2;
 				gameHeader.innerHTML = "Player 2's Turn";
 				gameHeader.className = "playerTwo";
 				element.classList.remove("empty");
 				element.classList.add('p1');
 				playerOneMarking.push(element.id);
+				checkWin();
 				computersTurn();
 			}
 		}else{
 			gameHeader.innerHTML = "This box is taken";
 			gameHeader.className= "red";
 			}
-		setTimeout(function(){checkWin();}, 500);
 	}
 	else if (twoPlayerGame == true){
 		if(element.innerHTML == '') {
@@ -74,11 +75,11 @@ function addSymbol(element) {
 				element.classList.add('p2');
 				playerTwoMarking.push(element.id);
 			}
+			checkWin();
 		}else{
 			gameHeader.innerHTML = "This box is taken";
 			gameHeader.className= "red";
 			}
-		checkWin();
 	}else {
 		gameHeader.innerHTML = "Please choose one or two player.";
 	}
@@ -86,11 +87,13 @@ function addSymbol(element) {
 }
 
 function computersTurn() {
+	if (canPlay == true){
 	setTimeout(function(){
 		var arrayOfEmptySquares = document.getElementsByClassName("empty");
 		var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
 		var element = arrayOfEmptySquares[randomEmptySquareIndex];
 		element.innerHTML = "O"; 
+		transitionFont(element);
 		whosTurn = 1;
 		gameHeader.innerHTML = "It is Player 1's turn";
 		gameHeader.className = "playerOne";
@@ -98,7 +101,8 @@ function computersTurn() {
 		element.classList.add("p2");
 		playerTwoMarking.push(element.id);
 		checkWin();
-	}, 500);
+	}, 1000);
+}
 };
 
 function checkWin() {
@@ -130,18 +134,24 @@ var thisWinCombination;
 
 
 function gameOver(combo, message) {
-	for(i=0; i<combo.length; i++){
-		document.getElementById(combo[i]).classList.add('winner');
-	}
-	gameHeader.innerHTML = message;
 	canPlay = false;
+	setTimeout(function(){
+		for(i=0; i<combo.length; i++){
+			document.getElementById(combo[i]).classList.add('winner');
+		}
+		gameHeader.innerHTML = message;
+	 }, 1000);
 }
+
 
 function reset(){
 	for (var i=0;i<squares.length;i++){
 		squares[i].innerHTML = "";
 		if(!squares[i].classList.contains('empty')){
 			squares[i].classList.add('empty');
+		}
+		if(squares[i].classList.contains('font')){
+			squares[i].classList.remove('font');
 		}
 		if(squares[i].classList.contains('winner')){
 			squares[i].classList.remove("winner");
@@ -161,6 +171,9 @@ function reset(){
 	onePlayerGame = false;
 	twoPlayerGame = false;
 }
-	
+
+function transitionFont(element){
+	element.classList.add('font');
+}
 
 

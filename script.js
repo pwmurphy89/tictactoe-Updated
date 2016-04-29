@@ -53,7 +53,7 @@ function addSymbol(element) {
 			gameHeader.innerHTML = "This box is taken";
 			gameHeader.className= "red";
 			}
-		checkWin();
+		setTimeout(function(){checkWin();}, 500);
 	}
 	else if (twoPlayerGame == true){
 		if(element.innerHTML == '') {
@@ -86,18 +86,20 @@ function addSymbol(element) {
 }
 
 function computersTurn() {
-	var arrayOfEmptySquares = document.getElementsByClassName("empty");
-	var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
-	var element = arrayOfEmptySquares[randomEmptySquareIndex];
-	element.innerHTML = "O"; 
-	whosTurn = 1;
-	gameHeader.innerHTML = "It is Player 1's turn";
-	gameHeader.className = "playerOne";
-	element.classList.remove("empty");
-	element.classList.add("p2");
-	playerTwoMarking.push(element.id);
-	checkWin();
-}
+	setTimeout(function(){
+		var arrayOfEmptySquares = document.getElementsByClassName("empty");
+		var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
+		var element = arrayOfEmptySquares[randomEmptySquareIndex];
+		element.innerHTML = "O"; 
+		whosTurn = 1;
+		gameHeader.innerHTML = "It is Player 1's turn";
+		gameHeader.className = "playerOne";
+		element.classList.remove("empty");
+		element.classList.add("p2");
+		playerTwoMarking.push(element.id);
+		checkWin();
+	}, 500);
+};
 
 function checkWin() {
 var playerOneRowCount = 0;

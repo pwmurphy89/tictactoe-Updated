@@ -93,44 +93,54 @@ function computersTurn() {
 	if (canPlay == true){
 		setTimeout(function(){
 			var combination;
-			for (i=0;i<winners.length; i++) {
-				var playerOneRowCount = 0;
-				combination = winners[i];
-					for(j=0; j<combination.length; j++) {
-						if(playerOneMarking.indexOf(combination[j]) > -1){
-							playerOneRowCount++;
-						}
-					}
-					if(playerOneRowCount == 2){
-						console.log(combination);
+				for (i=0;i<winners.length; i++) {
+					var playerOneRowCount = 0;
+					combination = winners[i];
 						for(j=0; j<combination.length; j++) {
-							var thisId = '"' + combination[j] +'"';
-							console.log(thisId);
-							console.log(document.getElementById('a1').innerHTML);
-							if(document.getElementById(thisId).innerHTML == ''){
-								document.getElementById(thisId).innerHTML == 'O';
-								console.log("This is blank" + thisId);
+							if(playerOneMarking.indexOf(combination[j]) > -1){
+								playerOneRowCount++;
 							}
 						}
-					}
-
+						if(playerOneRowCount == 2){
+							console.log(combination);
+							for(j=0; j<combination.length; j++) {
+								var emptyElement = document.getElementById(combination[j]);
+								if(emptyElement.classList.contains('empty')){
+									console.log('we should be marking something here');
+									//mark O there.
+									//end this function
+									emptyElement.innerHTML = "O"; 
+									transitionFont(emptyElement);
+									whosTurn = 1;
+									gameHeader.innerHTML = "It is Player 1's turn";
+									gameHeader.className = "playerOne";
+									emptyElement.classList.remove("empty");
+									emptyElement.classList.add("p2");
+									playerTwoMarking.push(emptyElement.id);
+									checkWin();
+									return;
+								}
+								else{
+									//keep looping
+								}
+							}//if none in loop, 
+						}else{
+							//keep looping
 						}
-					
-					
+					}		
 				
-			console.log("see it");
-			var arrayOfEmptySquares = document.getElementsByClassName("empty");
-			var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
-			var element = arrayOfEmptySquares[randomEmptySquareIndex];
-			element.innerHTML = "O"; 
-			transitionFont(element);
-			whosTurn = 1;
-			gameHeader.innerHTML = "It is Player 1's turn";
-			gameHeader.className = "playerOne";
-			element.classList.remove("empty");
-			element.classList.add("p2");
-			playerTwoMarking.push(element.id);
-			checkWin();
+							var arrayOfEmptySquares = document.getElementsByClassName("empty");
+							var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
+							var element = arrayOfEmptySquares[randomEmptySquareIndex];
+							element.innerHTML = "O"; 
+							transitionFont(element);
+							whosTurn = 1;
+							gameHeader.innerHTML = "It is Player 1's turn";
+							gameHeader.className = "playerOne";
+							element.classList.remove("empty");
+							element.classList.add("p2");
+							playerTwoMarking.push(element.id);
+							checkWin();
 		}, 1000);
 	}
 };

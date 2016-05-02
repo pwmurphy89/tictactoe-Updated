@@ -92,6 +92,33 @@ function addSymbol(element) {
 function computersTurn() {
 	if (canPlay == true){
 		setTimeout(function(){
+			var combination;
+			for (i=0;i<winners.length; i++) {
+				var playerOneRowCount = 0;
+				combination = winners[i];
+					for(j=0; j<combination.length; j++) {
+						if(playerOneMarking.indexOf(combination[j]) > -1){
+							playerOneRowCount++;
+						}
+					}
+					if(playerOneRowCount == 2){
+						console.log(combination);
+						for(j=0; j<combination.length; j++) {
+							var thisId = '"' + combination[j] +'"';
+							console.log(thisId);
+							console.log(document.getElementById('a1').innerHTML);
+							if(document.getElementById(thisId).innerHTML == ''){
+								document.getElementById(thisId).innerHTML == 'O';
+								console.log("This is blank" + thisId);
+							}
+						}
+					}
+
+						}
+					
+					
+				
+			console.log("see it");
 			var arrayOfEmptySquares = document.getElementsByClassName("empty");
 			var randomEmptySquareIndex = Math.floor(Math.random() * arrayOfEmptySquares.length);
 			var element = arrayOfEmptySquares[randomEmptySquareIndex];
@@ -109,8 +136,6 @@ function computersTurn() {
 };
 
 function checkWin() {
-var playerOneRowCount = 0;
-var playerTwoRowCount = 0;
 var thisWinCombination;
 	for (i=0;i<winners.length; i++) {
 		playerOneRowCount = 0;

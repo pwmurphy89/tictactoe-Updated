@@ -100,13 +100,12 @@ function computersTurn() {
 							if(playerOneMarking.indexOf(combination[j]) > -1){
 								playerOneRowCount++;
 							}
-						}
+						}//looped through this winning combination
+						//got number of player one marks in this winning combination
 						if(playerOneRowCount == 2){
-							console.log(combination);
 							for(j=0; j<combination.length; j++) {
 								var emptyElement = document.getElementById(combination[j]);
 								if(emptyElement.classList.contains('empty')){
-									console.log('we should be marking something here');
 									//mark O there.
 									//end this function
 									emptyElement.innerHTML = "O"; 
@@ -121,12 +120,15 @@ function computersTurn() {
 									return;
 								}
 								else{
-									//keep looping
+									//keep looping through this combination
 								}
-							}//if none in loop, 
+							}//none in loop, 
 						}else{
-							//keep looping
+							//playerOne doesn't have two marked in this winning combination
 						}
+						//check the other winning combinations
+						//run through all of them and if playerONe doesn't have two in a winning combination
+						//continue function and mark a random element with O
 					}		
 				
 							var arrayOfEmptySquares = document.getElementsByClassName("empty");

@@ -3,6 +3,7 @@ var squares = document.getElementsByClassName("square");
 for (i=0; i<squares.length; i++) {
 	squares[i].style.height = squareWidth + "px";	
 }
+console.log(squares);
 var winners = [
 	["a1","a2","a3"],
 	["b1","b2","b3"],
@@ -170,9 +171,28 @@ var thisWinCombination;
 			}
 		}
 	}
+	var counter = 0;
+	for(var k = 0; k < squares.length; k++){
+		if (squares[k].classList.contains('empty')){
+			counter++;
+		}
+	}
+	if (counter === 0){
+		document.getElementById("onePlayerButton").disabled = true;
+		document.getElementById("twoPlayerButton").disabled = true;
+		canPlay = false;
+		setTimeout(function(){
+		for(i=0; i<squares.length; i++){
+			document.getElementById(squares[i].id).classList.add('winner');
+		}
+		gameHeader.innerHTML = "TIED";
+	 }, 1000);
+	}
 }
 
 function gameOver(combo, message) {
+	document.getElementById("onePlayerButton").disabled = true;
+	document.getElementById("twoPlayerButton").disabled = true;
 	canPlay = false;
 	setTimeout(function(){
 		for(i=0; i<combo.length; i++){
@@ -183,6 +203,8 @@ function gameOver(combo, message) {
 }
 
 function reset(){
+	document.getElementById("onePlayerButton").disabled = false;
+	document.getElementById("twoPlayerButton").disabled = false;
 	for (var i=0;i<squares.length;i++){
 		squares[i].innerHTML = "";
 		if(!squares[i].classList.contains('empty')){

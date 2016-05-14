@@ -1,10 +1,20 @@
 #game-wrapper {
 	padding: 30px;
+	background-color: #796363;
+}
+#title{
+    text-align: center;
+    width: 15%;
+    margin: auto;
+    border-radius: 10px;
+}
+h1{
+	margin: 0px;
 }
 #game-header {
 	font-size: 30px;
 	font-weight: bold;
-	background-color: green;
+	background-color:#377DB4;
 	color: white;
 	border-radius: 10px;
 	width: 46%;
@@ -15,12 +25,14 @@
 	text-align: center;
 	margin-bottom: 25px;
 }
+
 button{
 	width: 110px;
     height: 30px;
     border-radius: 4px;
     font-size: 18px;
 }
+
 #reset{
 	text-align: center;
 	margin:auto;
@@ -45,7 +57,7 @@ button{
 	width: 30%;
 	font-size: 0px;
 	transition: font-size 1s ;
-	background: white;
+	background: beige;
 	margin-left: 5%;
 	padding: 30px 0;
 	float: left;
@@ -61,13 +73,13 @@ button{
 	margin-left: 0px;
 }
 #game-header.playerTwo {
-	background-color: yellow;
+	background-color: #FFC107;
 }
 #game-header.playerOne {
-	background-color: green;
+	background-color: #377DB4;
 }
 .winner {
-	background-color: blue;
+	background-color:#3F51B5;
 }
 .red {
 	background-color: red;

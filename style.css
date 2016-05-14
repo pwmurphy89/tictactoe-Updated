@@ -7,13 +7,19 @@
 	background-color: green;
 	color: white;
 	border-radius: 10px;
-	width: 60%;
+	width: 46%;
 	text-align: center;
 	margin: 0 auto 25px;
 }
 #choice {
 	text-align: center;
 	margin-bottom: 25px;
+}
+button{
+	width: 110px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 18px;
 }
 #reset{
 	text-align: center;
